@@ -18,7 +18,7 @@
 <div id="login-box">
 <form method="post" name="login" action="LoginCheck"> 
 <H2>Login</H2>
-Willkommen zuswww.OnlineOrdner.at! Ihr Versicherungs-Webservice! Bitte loggen Sie sich ein!
+Willkommen zu www.OnlineOrdner.at! Ihr Versicherungs-Webservice! Bitte loggen Sie sich ein!
 <br />
 <br />
 <div id="login-box-name" style="margin-top:20px;">Benutzername:</div><div id="login-box-field" style="margin-top:20px;"><input name="loginName" class="form-login" title="Benutzername" value="admin" size="30" maxlength="2048" /></div>
