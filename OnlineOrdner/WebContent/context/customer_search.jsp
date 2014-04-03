@@ -20,6 +20,9 @@ Released   : 20080524
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <link href="style.css" rel="stylesheet" type="text/css" media="screen" />
+ <script type="text/javascript"
+            src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+    <script src="js/jquery.autocomplete.js"></script>  
 </head>
 <body>
 
@@ -110,31 +113,15 @@ Released   : 20080524
 	<div class="bgtop">
 	<div class="bgbtm">
 		<div class="post">
-			<h1 class="title">Willkommen <% if (session.getAttribute("user") != null){%> <%=session.getAttribute("gender").toString()%><% ; } %>!</a></h1>
-			<div class="entry">
-				<p> Dies ist ihr persönlicher Bereich ihres Online Ordners!</p>
-				<h2>Kategorien</h2>
-				<p>Diese Seite kann individuell gestaltet werden</p>
-				<ul>
-					<li>NEWS</li>
-					<li>INFORMATIONEN</li>
-					<li>KOOPERATIONEN</li>
-					<li>AKTIONEN</li>
-				</ul>
-				<h3>Blogs auch möglich</h3>
-			
-				<blockquote>
-					<p>&ldquo;Hier können Sie Blogeinträge oder sonstiges verwalten!&rdquo;</p>
-				</blockquote>
-				
-				<h2>News und Informationen</h2>
-				<p>Hier können aktuelle Statusmeldungen angezeigt werden und Informationen abegrufen die auf den User abgestimmt sind!</p>
-				
-				<h2>Aktuelle Angebot</h2>
-				<p>Interessante Angebote genau auf Sie abgestimmt!</p>
-			</div>
-			<p class="tags"><strong>Tags: </strong><a href="#">Versicherung</a> <a href="#">Haushalt</a> <a href="#">Unfall</a> <a href="#">KFZ</a></p>
-		<!-- 	<p class="links">Posted in <a href="#" title="View all posts in Free WP Themes" rel="category">Uncategorized</a> &nbsp;&nbsp;|&nbsp;&nbsp; <a href="#" title="Edit post">Edit</a> &nbsp;&nbsp;|&nbsp;&nbsp; <a href="#" title="Comment on About This Theme">4 Comments</a></p>  -->
+		
+		<h1>Benutzer</h1>
+    <input type="text" id="customer" name="customer"/>
+     
+    <script>
+        $("#customer").autocomplete("getdata.jsp");
+    </script>
+		
+		
 		</div>
 	</div>
 	</div>
