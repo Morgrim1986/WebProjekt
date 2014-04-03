@@ -42,6 +42,7 @@ public class LoginCheck extends HttpServlet {
 		
 		String user = request.getParameter("loginName");
 		String pass = request.getParameter("password");
+		int type;
 
 	
 				try {
@@ -61,6 +62,9 @@ public class LoginCheck extends HttpServlet {
 						System.out.println(pass.isEmpty());
 						if ((res.getString("password").compareTo(pass) == 0) & (pass.isEmpty() != true)){
 							
+							
+						type = res.getInt("type");	
+							
 						if (res.getString("gender").compareTo("1") == 0){
 							gender = "Herr " + res.getString("firstname") + " " +res.getString("lastname");
 						}
@@ -78,7 +82,14 @@ public class LoginCheck extends HttpServlet {
 						Cookie userName = new Cookie( "user", user);
 						userName.setMaxAge(2 * 60);
 						response.addCookie(userName);
+						
+						
+						if (type == 0){
 						response.sendRedirect("context/main.jsp");
+						}
+						else{
+						response.sendRedirect("context/main_a.jsp");	
+						}
 						
 									
 						}
