@@ -33,13 +33,13 @@ Released   : 20080524
 		<ul>
 		<h2>Kategorien</h2>
 			<li>	
-			<form method = post name ="customers" action = "/customer_search.jsp">
+			<form method = post name ="customers">
 			<table style="border-spacing:10px;" border="0" cellpadding="25" cellspacing="0">
 	
 			 
 			 <tr>
 			 <td>   
-			  <a href="" title="Meine Kunden">Meine Verträge</a>
+			  <a href="customer_search.jsp" title="Meine Kunden">Meine Verträge</a>
 			 </td>
 			 </tr>
 			  

@@ -26,7 +26,13 @@ import java.util.StringTokenizer;
 	    		
 	    		while (res.next()) {              
 	    	       
-	    			data = data + res.getString(1) + ", ";	
+	    			if (data == null){
+	    			data = res.getString(1) + ", ";	
+	    			}
+	    			else{
+	    			
+	    			 data = data + res.getString(1) + ", ";
+	    			}
 	    		}
 	    		
 	    	
