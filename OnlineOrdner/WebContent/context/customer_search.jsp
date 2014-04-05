@@ -1,17 +1,13 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<!--
-Design by Free CSS Templates
-http://www.freecsstemplates.org
-Released for free under a Creative Commons Attribution 2.5 License
-
-Name       : Compressed 
-Description: A three-column, fixed-width template fit for 1024x768 screen resolutions.
-Version    : 1.0
-Released   : 20080524
 
 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" session="true"%>
+    
+    <%@ taglib
+    prefix="c"
+    uri="http://java.sun.com/jsp/jstl/core" 
+%>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -114,13 +110,46 @@ Released   : 20080524
 	<div class="bgbtm">
 		<div class="post">
 		
-		<h1>Benutzer</h1>
-    <input type="text" id="customer" name="customer"/>
-     
-    <script>
-        $("#customer").autocomplete("getdata.jsp");
-    </script>
-		
+	<h1>Kundensuche</h1>
+	<p>Bitte wählen Sie einen Kunden aus!</p>
+    <form action="../GetCustomers" method="post">
+    <input type="search" id="customer" name="customer"/>
+	    <script>
+    	    $("#customer").autocomplete("getdata.jsp");
+    	</script>
+	<input type="submit" name="search"/>	
+	</form>
+	
+<table border="1" width="490" height="30" cellspacing="3" cellpadding="5">
+<tbody>
+
+<tr>
+<th align="center">Vorname</th>
+<th align="center">Nachname</th>
+<th align="center">Auswahl</th>
+
+</tr>
+
+
+ 
+
+<form action="../GetCustomerContracts" method="post">	
+<c:forEach items="${sessionScope.list}" var="list">
+<tr><td><c:out value="${list.firstname}"/></td> 
+<td><c:out value="${list.lastname}"/></td>
+<td><input type="radio" name="go" value="${list.username}"></td> </tr>
+</c:forEach>
+<tr> <td colspan="100%" align="center"> <input type="submit" /> </td></tr>
+</form>
+
+</tbody>
+<tr><td colspan="100"> ${sessionScope.message} </td></tr>
+<c:remove var="message" scope="session" />
+</table>		
+	
+	
+	
+	
 		
 		</div>
 	</div>

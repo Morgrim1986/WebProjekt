@@ -5,6 +5,7 @@ public class Customers {
 	    
 	    private String firstname;
 	    private String lastname;
+	    private String username;
 	    
 	    public Customers() {
 	    }
@@ -22,6 +23,14 @@ public class Customers {
 	        this.lastname = lastname;
 	    }
 	   
+	    public String getUsername() {
+	        return username;
+	    }
+	    public void setUsername(String username) {
+	        this.username = username;
+	    }
+	   
+	    
 		
 	}
 	

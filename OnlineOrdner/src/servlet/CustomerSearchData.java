@@ -22,7 +22,7 @@ import java.util.StringTokenizer;
 	    	try {
 	         	DbCon a = new DbCon();
 	    		Statement st = a.getStatement();
-	    		ResultSet res = st.executeQuery("Select u.firstname, u.lastname from users as u INNER JOIN has_customer as h ON u.username = h.user where h.user = '"+ user +"'");
+	    		ResultSet res = st.executeQuery("Select u.firstname, u.lastname from users as u INNER JOIN has_customer as h ON u.username = h.customer where h.user = '"+ user +"'");
 	    		
 	    		while (res.next()) {              
 	    	       
