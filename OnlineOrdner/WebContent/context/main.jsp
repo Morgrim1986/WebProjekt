@@ -16,97 +16,37 @@ Released   : 20080524
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8"; />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js">
+</script>
+<script type="text/javascript" src="http://www.skypeassets.com/i/scom/js/skype-uri.js"></script>
 <title>OnlineOrdner-Main</title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <link href="style.css" rel="stylesheet" type="text/css" media="screen" />
 </head>
 <body>
-
 	<div id="page">
-	<div id="logo">
-	Eingeloggt als: <strong><% if (session.getAttribute("user") != null){%> <%= session.getAttribute("user").toString()%><% ;} %> | <a href="/OnlineOrdner/LogOut">Abmelden</a></strong> </p>
+	<div id="header">
+	
+	
+	<script type="text/javascript">
+$("#header").load("header.jsp");
+			</script>
 	</div>
 <!-- end #header -->
+
+
+
+
+
 	<!-- start sidebar1 -->
-	<div id="sidebar1" class="sidebar">
-		<ul>
-		<h2>Kategorien</h2>
-			<li>	
-			<form method = post name ="contracts" action = "../DoSql">
-			<table style="border-spacing:10px;" border="0" cellpadding="25" cellspacing="0">
-		    <tr>
-			     <td> <input type="submit" name="contracts" value="" style="background: url('images/buttons/contracts.png');width:55px;height:55px;border:0"/>
-			     </td>
-			 </tr>
-			 
-			 <tr>
-			 <td>   
-			  <a href="" title="Meine Verträge">Meine Verträge</a>
-			 </td>
-			 </tr>
-			  
-			<tr>
-			 <td>   
-			 <input type="submit" name="appointments" value="" style="background: url('images/buttons/appointments.png');width:55px;height:55px;border:0"/>
-			 </td>
-			 </tr>
-			    
-			    
-			 <tr>
-			 <td> 
-		     <a href="" title="Meine Termine">Meine Termine</a> 
-            </td>
-		  </tr>
-		  
-		  	 <tr>
-			 <td>   
-			 <input type="submit" name="finance" value="" style="background: url('images/buttons/finance.png');width:55px;height:55px;border:0"/>
-			 </td>
-			 </tr>
-			    
-			    
-			 <tr>
-			 <td> 
-		     <a href="" title="Meine Finanzen">Meine Finanzen</a> 
-            </td>
-		  </tr>
-		  
-		  
-		  	  	 <tr>
-			 <td>   
-			 <input type="submit" name="email" value="" style="background: url('images/buttons/email.png');width:55px;height:50px;border:0"/>
-			 </td>
-			 </tr>
-			    
-			    
-			 <tr>
-			 <td> 
-		     <a href="" title="Posteingang">Posteingang</a> 
-            </td>
-		  </tr>
-		  
-		  
-			 <tr>
-			 <td>   
-			 <input type="submit" name="data" value="" style="background: url('images/buttons/userdata.png');width:55px;height:55px;border:0"/>
-			 </td>
-			 </tr>
-			    
-			    
-			 <tr>
-			 <td> 
-		     <a href="" title="Meine Daten">Meine Daten</a> 
-            </td>
-		  </tr>
-	    
-			    </tr>
-			  </table>
-			</form>
-		</li>
-	</ul>
-		
-	</div>
+	<div id="sidebar1" class="sidebar"> 
+	
+<script type="text/javascript">
+$("#sidebar1").load("leftbar.html");
+			</script>
+			</div>
+	
 	<!-- end sidebar1 -->
 	<!-- start content -->
 	<div id="content">
@@ -145,41 +85,10 @@ Released   : 20080524
 <!-- end content -->
 	<!-- start sidebar2 -->
 	<div id="sidebar2" class="sidebar">
-		<ul>
 	
-	
-		<table border = "0">
-		
-		<colgroup width="200" span="2"></colgroup>
-					<tr> <td><h2>Ihr Ansprechpartner</h2> </td> </tr>
-					<tr> <td> <img src="images/bprof.jpg" alt="Berater"> </img> </td> </tr>
-			
-		</table>
-	
-			<table border ="0">
-			 <colgroup width="200" span="5"></colgroup>
-			 		<tr></tr>
-			 				<tr> </tr>
-			 						<tr> </tr>
-					<tr> <td>Berater:</td> <td>Profanter B.</td> </tr>
-					<tr> <td>Adresse:</td> <td>Viktringer Ring</td> </tr>
-					<tr> <td>Telefon:</td> <td>04224/81044</td> </tr>
-					<tr> <td>Fax:</td> <td>0463/508210-8</td> </tr>
-					</table>
-		
-			</ul>
-		<script type="text/javascript" src="http://www.skypeassets.com/i/scom/js/skype-uri.js"></script>
-<div id="SkypeButton_Call_andreas.glantschnig_1">
-  <script type="text/javascript">
-    Skype.ui({
-      "name": "call",
-      "element": "SkypeButton_Call_andreas.glantschnig_1",
-      "participants": ["andreas.glantschnig"],
-      "imageSize": 32
-    });
-  </script>
-</div>
-		
+		<script type="text/javascript">
+$("#sidebar2").load("rightbar.html >*");
+			</script>
 	</div>
 	<!-- end sidebar2 -->
 	<div style="clear: both;">&nbsp;</div>
@@ -188,5 +97,7 @@ Released   : 20080524
 <div id="footer">
 	<p class="legal">&copy;Copyright by Profanter Versicherungen <a href="http://www.onlineordner.at/">OnlineOrdner.at</a></p>
 </div>
+
+
 </body>
 </html>

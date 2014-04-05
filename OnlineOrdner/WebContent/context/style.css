@@ -396,3 +396,9 @@ float: center;
 	background-color: Highlight;
 	color: HighlightText;
 }
+
+.cntr
+{
+     margin-left: 25%;
+	margin-right: 25%;
+}

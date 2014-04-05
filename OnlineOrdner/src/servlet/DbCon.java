@@ -14,7 +14,7 @@ public class DbCon {
 		
 		
 		Class.forName("com.mysql.jdbc.Driver").newInstance();
-		con = DriverManager.getConnection("jdbc:mysql://localhost/onlineordner","admin","admin");
+		con = DriverManager.getConnection("jdbc:mysql://localhost/onlineordner","root","");
 	    st = con.createStatement();
 		
 	}
