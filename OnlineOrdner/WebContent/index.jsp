@@ -21,8 +21,8 @@
 Willkommen zu www.OnlineOrdner.at! Ihr Versicherungs-Webservice! Bitte loggen Sie sich ein!
 <br />
 <br />
-<div id="login-box-name" style="margin-top:20px;">Benutzername:</div><div id="login-box-field" style="margin-top:20px;"><input name="loginName" class="form-login" title="Benutzername" value="admin" size="30" maxlength="2048" /></div>
-<div id="login-box-name">Passwort:</div><div id="login-box-field"><input name="password" type="password" class="form-login" title="Password" value="admin" size="30" maxlength="2048" /></div>
+<div id="login-box-name" style="margin-top:20px;">Benutzername:</div><div id="login-box-field" style="margin-top:20px;"><input name="loginName" class="form-login" title="Benutzername" value="andrea" size="30" maxlength="2048" /></div>
+<div id="login-box-name">Passwort:</div><div id="login-box-field"><input name="password" type="password" class="form-login" title="Password" value="andi" size="30" maxlength="2048" /></div>
 <br />
 <span class="login-box-options"><input type="checkbox" name="1" value="1"> Remember Me <a href="#" style="margin-left:30px;">Forgot password?</a></span>
 <br />
