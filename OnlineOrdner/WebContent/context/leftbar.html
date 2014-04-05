@@ -2,6 +2,31 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js">
+</script>
+
+
+<script> 
+$("#i1").hover(function(){
+	$("#img1").animate({
+	      left:'100px',
+	      opacity:'1.0',
+	      height:'60px',
+	      width:'60px'
+	    });
+	  },
+	  function(){
+		  $("#img1").animate({
+		      left:'100px',
+		      opacity:'1.0',
+		      height:'55px',
+		      width:'55px'
+		    });
+	}); 
+	
+</script> 
+
+
 <title>Insert title here</title>
 </head>
 <body>
@@ -11,10 +36,10 @@
 			<form method = post name ="contracts" action = "../DoSql">
 			<table style="border-spacing:10px;" border="0" cellpadding="25" cellspacing="0">
 		    <tr>
-			    <a href="../DoSql" title="TEST">
+			    <a href="../DoSql" title="" id="i1" >
 			    
 			     
-			      <img src="images/buttons/contracts.png" width="55px" height="55px" border="0" ></a>
+			      <img id="img1" src="images/buttons/contracts.png" width="55px" height="55px" border="0" ></a>
 			     </td>
 			 </tr>
 			 
