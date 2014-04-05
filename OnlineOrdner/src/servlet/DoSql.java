@@ -23,7 +23,8 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/DoSql")
 public class DoSql extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final String U_DIRECTORY = "Documents/"; 
+	private static final String U_DIRECTORY = "Documents/";
+	
 
        
     /**
@@ -43,13 +44,38 @@ public class DoSql extends HttpServlet {
 		if (request.getAttribute("operation") != "upload") {
 		
 		
-		ArrayList<Contracts> arrayList = new ArrayList<Contracts>(); 
+		ArrayList<Contracts> arrayList = new ArrayList<Contracts>();
+		ArrayList<CusAdditional> arrayList_additional = new ArrayList<CusAdditional>();
 	
 		try {
      	DbCon a = new DbCon();
 		Statement st = a.getStatement();
 		HttpSession session = request.getSession();
-		ResultSet res = st.executeQuery("Select * from contracts where user = '"+ session.getAttribute("user")+"'");
+		ResultSet res;
+		ResultSet res_add;
+		
+		if ( !request.getParameterMap().containsKey("user")){
+		
+		res = st.executeQuery("Select * from contracts where user = '"+ session.getAttribute("user")+"'");
+		}
+		else{
+			
+		
+		
+		res_add = st.executeQuery("Select * from has_add_documents where username_cus = '"+ request.getAttribute("user")+"' and username_ver = '" + request.getSession().getAttribute("user").toString() + "'");
+		
+		while (res_add.next()) {              
+		       
+			CusAdditional cus_add = new CusAdditional();
+			cus_add.setDocument(res_add.getString(3));
+			cus_add.setType(res_add.getString(4));
+			arrayList_additional.add(cus_add);
+			
+			
+		}
+		res = st.executeQuery("Select * from contracts where user = '"+ request.getAttribute("user")+"'");
+		
+		}
 		
 		while (res.next()) {              
 	       
@@ -60,29 +86,55 @@ public class DoSql extends HttpServlet {
 	            contract.setDocument(res.getString(5));
 	            arrayList.add(contract);
 	        
-		
-	        
-		
+	
 		}
 		
 	
+		
+		
 	} catch (InstantiationException | IllegalAccessException
 				| ClassNotFoundException | SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 	}
-		
+	
 		request.getSession().setAttribute("list", arrayList);
-//		RequestDispatcher rd = getServletContext().getRequestDispatcher("/context/contracts.jsp");
-  	response.sendRedirect("context/contracts.jsp");
-  //      rd.forward(request, response);	
+		request.getSession().setAttribute("list_add", arrayList_additional);
+		if ( !request.getParameterMap().containsKey("user")) {
+		  	response.sendRedirect("context/contracts.jsp");}
+		else{
+			response.sendRedirect("context/customer_contracts.jsp");
+		}
+ 	
 	}
 		
 		else if (request.getAttribute("operation") == "upload"){
+			
+			if ( !request.getParameterMap().containsKey("user")) {
 			insertDocument(U_DIRECTORY + request.getAttribute("file"), request.getSession().getAttribute("user").toString(), request.getAttribute("type").toString());
+			}
+			else{
+				
+				if ( !request.getParameterMap().containsKey("add_upload")) {
+					insertDocument(U_DIRECTORY + request.getAttribute("file"), request.getAttribute("user").toString(), request.getAttribute("type").toString());
+				}
+				else{
+					System.out.println(request.getSession().getAttribute("user").toString());
+					System.out.println( request.getParameter("user").toString());
+					System.out.println( U_DIRECTORY + request.getAttribute("user").toString() + request.getAttribute("file"));
+					System.out.println(request.getAttribute("type").toString());
+					
+					insertDocumentAdd(request.getSession().getAttribute("user").toString(), request.getAttribute("user").toString(), U_DIRECTORY + request.getAttribute("user").toString() + "/" + request.getAttribute("file"), request.getAttribute("type").toString());	
+				}
+			}
+			
 			HttpSession session = request.getSession();
 			session.setAttribute("message", request.getAttribute("message"));
-			response.sendRedirect("DoSql");
+			if (request.getParameterMap().containsKey("user")) {
+			request.setAttribute("user", request.getParameter("user").toString());
+			}
+			request.removeAttribute("operation");
+			getServletContext().getRequestDispatcher("/DoSql").forward(request, response);
 				
 		}
 	}
@@ -121,6 +173,31 @@ public class DoSql extends HttpServlet {
 
 		
 	}
+	
+		
+	
+	protected void insertDocumentAdd(String user_ver, String user_cus, String document, String type){
+		
+			
+		try {
+	     	DbCon a = new DbCon();
+			Statement st = a.getStatement();
+			String statement = "Insert Into `has_add_documents`(`username_ver`, `username_cus`, `document`, `type`) VALUES ('" + user_ver + "','" + user_cus + "','" + document + "','" + type + "')";
+			System.out.println(statement);
+					
+			st.executeUpdate(statement);  
+	
+		} catch (InstantiationException | IllegalAccessException
+					| ClassNotFoundException | SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+		}
+	
+	}
+	
+	
+	
+	
 	
   protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	        

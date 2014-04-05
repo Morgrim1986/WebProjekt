@@ -50,13 +50,14 @@ public class UploadServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		HttpSession session = request.getSession();
 	    String description = request.getParameter("description"); // Retrieves <input type="text" name="description">
 	    String applicationPath = request.getServletContext().getRealPath("");
 	    String uploadFilePath = applicationPath + File.separator + UPLOAD_DIRECTORY;
 	    Part filePart = request.getPart("file"); // Retrieves <input type="file" name="file">
 	    
-	
+
 	    if (getFilename(filePart).equals("") != true) {
 	    
 	    String filename = getFilename(filePart);
@@ -70,16 +71,34 @@ public class UploadServlet extends HttpServlet {
         request.setAttribute("message", filename + " Datei wurde erfolgreich hochgeladen!");
         request.setAttribute("file", filename);
         request.setAttribute("type", description);
+    	
+        if (request.getParameterMap().containsKey("user") ){
+        request.setAttribute("user", request.getParameter("user"));
+        }
+    	
+    	if (request.getParameterMap().containsKey("add_upload")){  
+	      request.setAttribute("add_upload", request.getParameter("add_upload"));
+	      }
+    	
         request.setAttribute("operation", "upload");   
         getServletContext().getRequestDispatcher("//DoSql").forward(request, response);
         
 	    }
 	    else{
-	    	
+	    	if ( !request.getParameterMap().containsKey("user")){
 	    	   session.setAttribute("message", "Sie müssen zuerst eine Datei auswählen!");
-	    	   response.sendRedirect("context/contracts.jsp");
+	       	   response.sendRedirect("context/contracts.jsp");
+	    	}
+	    	   else{
+	    	  session.setAttribute("message", "Sie müssen zuerst eine Datei auswählen!");
+	    	  request.setAttribute("user", request.getParameter("user"));
+	    	  if (request.getParameterMap().containsKey("add_upload")){  
+	    	  request.setAttribute("add_upload", request.getParameter("add_upload"));
+	    	  }
+	    	  getServletContext().getRequestDispatcher("/context/customer_contracts.jsp").forward(request, response);
+	    	  }
 	    	
-	    }
+	     }
         
         
 	}
