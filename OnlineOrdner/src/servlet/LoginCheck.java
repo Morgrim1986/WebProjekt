@@ -85,7 +85,7 @@ public class LoginCheck extends HttpServlet {
 						
 						
 						if (type == 0){
-						response.sendRedirect("context/main.jsp");
+						response.sendRedirect("GetProposals");
 						}
 						else{
 						response.sendRedirect("context/main_a.jsp");	

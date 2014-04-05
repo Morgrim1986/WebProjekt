@@ -13,11 +13,16 @@ Released   : 20080524
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" session="true"%>
 
+<%@ taglib
+    prefix="c"
+    uri="http://java.sun.com/jsp/jstl/core" 
+%>
+
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="content-type" content="text/html; charset=utf-8"; />
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js">
-</script>
+<meta http-equiv="content-type" content="text/html; charset=utf-8";/>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script type="text/javascript" src="http://www.skypeassets.com/i/scom/js/skype-uri.js"></script>
 <title>OnlineOrdner-Main</title>
 <meta name="keywords" content="" />
@@ -34,11 +39,6 @@ $("#header").load("header.jsp");
 			</script>
 	</div>
 <!-- end #header -->
-
-
-
-
-
 	<!-- start sidebar1 -->
 	<div id="sidebar1" class="sidebar"> 
 	
@@ -55,6 +55,31 @@ $("#sidebar1").load("leftbar.html");
 		<div class="post">
 			<h1 class="title">Willkommen <% if (session.getAttribute("user") != null){%> <%=session.getAttribute("gender").toString()%><% ; } %>!</a></h1>
 			<div class="entry">
+		 	
+<%if (session.getAttribute("list") != null){ %>
+ 
+ <table border="1" bordercolor="RED" width="430" height="20" cellspacing="1" cellpadding="1">
+  <tbody>
+ <c:forEach items="${sessionScope.list}" var="list"><tr>
+<td>Aktuelles Angebot</td>
+<td><c:out value="${list.contract_type}"/></td>
+<td><c:out value="${list.status}"/></td> 
+<td><form method = post name ="contracts" action = "${list.document}">
+<input type="submit" name="pdf" value="" align="center" style="background: url('images/pdf_small.jpg');width:25px;height:25px;border:0"/>
+</form></td>
+
+<td> <form method= post name="accept" action="../AcceptProposal"> <input type="submit" name="accept" value="Akzeptieren" id="${list.id}"/> </input>
+<input type="hidden" name="contract_id" value="${list.id}"> </form></td></tr>
+
+</c:forEach>
+</tbody>
+</table>
+	
+ <%}%>
+ 
+ 	<%if (request.getAttribute("success") != null){ %>
+ 	<h2>Das Angebot wurde angenommen!</h2>
+	<%}%>
 				<p> Dies ist ihr persönlicher Bereich ihres Online Ordners!</p>
 				<h2>Kategorien</h2>
 				<p>Diese Seite kann individuell gestaltet werden</p>
