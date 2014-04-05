@@ -41,7 +41,7 @@
 		<div class="post" min-height:60px>
 			<h1 class="title">Verträge</a></h1>
 			<p></p>
-			 <table border="1" width="490" height="30" cellspacing="3" cellpadding="5">
+			 <table class="TFtable" border="1" width="490" height="30" cellspacing="3" cellpadding="5" >
 <tbody>
 <tr>
 <th align="center">ID</th>
