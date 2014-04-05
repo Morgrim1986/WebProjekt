@@ -32,13 +32,13 @@
 		<ul>
 		<h2>Kategorien</h2>
 			<li>	
-			<form method = post name ="customers" action = "../DoSql">
+			<form method = post name ="customers" action = "../GetCustomers">
 			<table style="border-spacing:10px;" border="0" cellpadding="25" cellspacing="0">
 	
 			 
 			 <tr>
 			 <td>   
-			  <a href="" title="Meine Kunden">Meine Verträge</a>
+			  <a href="../GetCustomers" title="Meine Kunden">Meine Verträge</a>
 			 </td>
 			 </tr>
 			  

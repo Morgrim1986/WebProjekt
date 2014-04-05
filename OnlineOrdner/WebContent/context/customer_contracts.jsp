@@ -29,13 +29,13 @@
 	<ul>
 		<h2>Kategorien</h2>
 			<li>	
-			<form method = post name ="customers" action = "../DoSql">
+			<form method = post name ="customers" action = "../GetCustomers">
 			<table style="border-spacing:10px;" border="0" cellpadding="25" cellspacing="0">
 	
 			 
 			 <tr>
 			 <td>   
-			  <a href="" title="Meine Kunden">Meine Verträge</a>
+			  <a href="../GetCustomers" title="Meine Kunden">Meine Verträge</a>
 			 </td>
 			 </tr>
 			  
@@ -106,7 +106,9 @@
 	<div class="bgtop">
 	<div class="bgbtm">
 		<div class="post" min-height:60px>
-			<h1 class="title">Verträge von"</a></h1>
+			<h1 class="title">Verträge von <c:forEach items="${sessionScope.list_names}" var="list"> <c:out value="${list.firstname}" />  <c:out value="${list.lastname}"/></c:forEach></h1>
+			<h2>${sessionScope.message}</h2>
+			<c:remove var="message" scope="session" />
 			<p></p>
 			 <table border="1" width="490" height="30" cellspacing="3" cellpadding="5">
 <tbody>
@@ -116,7 +118,6 @@
 <th align="center">Status</th>
 <th align="center">Dokument</th>
 </tr>
-
 
 	
 <c:forEach items="${sessionScope.list}" var="list">
@@ -130,7 +131,8 @@
 </tbody>
 	
 <tr>
-<td colspan="100%"><form action="../UploadServlet" method="post" enctype="multipart/form-data">
+<td colspan="100%"><form action="UploadServlet" method="post" enctype="multipart/form-data">
+<input type="hidden" name="user" value="${requestScope.user}">
     <select size="1" name="description" />
       <option>Unfallversicherung</option>
       <option>Lebensversicherung</option>
@@ -143,13 +145,43 @@
 </form>
 </td>
 </tr>
-
-<tr><td colspan="100"> ${sessionScope.message} </td></tr>
-<c:remove var="message" scope="session" />
-
 </table>		
 	
 	
+<h1 class="title">Dokumente für <c:forEach items="${sessionScope.list_names}" var="list"> <c:out value="${list.firstname}" />  <c:out value="${list.lastname}"/></c:forEach></h1>
+
+<table border="1" width="490" height="30" cellspacing="3" cellpadding="5">
+<tbody>
+<tr>
+<th align="center">Dokumentart</th>
+<th align="center">Dokumentlink</th>
+</tr>
+
+	
+<c:forEach items="${sessionScope.list_add}" var="list">
+<tr><td><c:out value="${list.type}"/></td> 
+<td><form method = post name ="contracts" action = "${list.document}">
+<input type="submit" name="pdf" value="" align="center" style="background: url('images/pdf_small.jpg');width:25px;height:25px;border:0"/>
+</form></td></tr>
+</c:forEach>
+</tbody>
+	
+<tr>
+<td colspan="100%"><form action="UploadServlet" method="post" enctype="multipart/form-data">
+<input type="hidden" name="user" value="${requestScope.user}">
+<input type="hidden" name="add_upload" value="upload">
+    <select size="1" name="description" />
+      <option>Mail</option>
+      <option>Word</option>
+      <option>Anfrage</option>
+      <option>Angebot</option>
+    </select>
+   <input type="file" name="file" />
+   <input type="submit" />
+</form>
+</td>
+</tr>
+</table>
 			
 			<div class="entry">
 			

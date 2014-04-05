@@ -39,14 +39,17 @@ public class GetCustomerContracts extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		
+	
 		ArrayList<Contracts> arrayList = new ArrayList<Contracts>();
-		
+		ArrayList<Customers> arrayList_names = new ArrayList<Customers>();
+		ArrayList<CusAdditional> arrayList_additional = new ArrayList<CusAdditional>();
+			
 		System.out.println(request.getParameter("go").toString());
 		try {
      	DbCon a = new DbCon();
 		Statement st = a.getStatement();
      	ResultSet res = st.executeQuery("Select * from contracts where user = '"+ request.getParameter("go").toString()+"'");
+     	
 		
 		while (res.next()) {              
 	       
@@ -57,8 +60,34 @@ public class GetCustomerContracts extends HttpServlet {
 	            contract.setDocument(res.getString(5));
 	            arrayList.add(contract);
 	        
-	
+	           
 		}
+
+		 ResultSet res_names = st.executeQuery("Select firstname, lastname from users where username = '"+ request.getParameter("go").toString()+"'");
+		 
+		while (res_names.next()) {              
+		       
+			Customers cus = new Customers();
+			cus.setfirstname(res_names.getString(1));
+			cus.setLastname(res_names.getString(2));
+			arrayList_names.add(cus);
+			
+			
+		}
+		
+		
+		 ResultSet res_add_documents = st.executeQuery("Select * from has_add_documents where username_cus = '"+ request.getParameter("go").toString()+"' and username_ver = '" + request.getSession().getAttribute("user").toString() + "'");
+		 
+			while (res_add_documents.next()) {              
+			       
+				CusAdditional cus_add = new CusAdditional();
+				cus_add.setDocument(res_add_documents.getString(3));
+				cus_add.setType(res_add_documents.getString(4));
+				arrayList_additional.add(cus_add);
+				
+				
+			}
+		
 		
 	
 	} catch (InstantiationException | IllegalAccessException
@@ -68,10 +97,13 @@ public class GetCustomerContracts extends HttpServlet {
 	}
 		
 		request.getSession().setAttribute("list", arrayList);
-
-  	response.sendRedirect("context/customer_contracts.jsp");
-
-	}
+		request.getSession().setAttribute("list_names", arrayList_names);
+		request.getSession().setAttribute("list_add", arrayList_additional);
+		System.out.println( request.getParameter("go").toString());
+		request.setAttribute("user", request.getParameter("go").toString());
+		RequestDispatcher rd = getServletContext().getRequestDispatcher("/context/customer_contracts.jsp");
+	    rd.forward(request, response);
+}
 		
 
 	
