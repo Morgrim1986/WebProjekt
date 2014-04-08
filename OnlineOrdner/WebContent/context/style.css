@@ -314,7 +314,7 @@ float: center;
 }
 
 .post .entry {
-	padding: 20px;
+	
 	background: url(../convergence/images/img10.gif) repeat-x;
 }
 
@@ -399,7 +399,7 @@ float: center;
 
 .cntr
 {
-     margin-left: 25%;
+    margin-left: 25%;
 	margin-right: 25%;
 }
 
@@ -407,7 +407,8 @@ float: center;
 
 
 	.TFtable{
-		width:100%; 
+		margin-left: auto;
+   		margin-right: auto;
 		border-collapse:collapse; 
 	}
 	.TFtable td{ 
@@ -425,4 +426,7 @@ float: center;
 	.TFtable tr:nth-child(even){
 		background: #dae5f4;
 	}
-
+.TFtable th{
+	padding-right:10px;  
+	padding-left:10px;
+}

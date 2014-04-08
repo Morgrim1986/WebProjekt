@@ -34,20 +34,24 @@
 			
 	</div>
 	<!-- end sidebar1 -->
+	
 	<!-- start content -->
 	<div id="content">
 	<div class="bgtop">
 	<div class="bgbtm">
 		<div class="post" min-height:60px>
 			<h1 class="title">Verträge</a></h1>
+			
+			<div class="entry">
+			
 			<p></p>
-			 <table class="TFtable" border="1" width="490" height="30" cellspacing="3" cellpadding="5" >
+			 <table  class="TFtable" height="30" border="1"  cellspacing="1" cellpadding="10" >
 <tbody>
 <tr>
 <th align="center">ID</th>
-<th align="center">Vertragsart</th>
-<th align="center">Status</th>
-<th align="center">Dokument</th>
+<th  align="center">Vertragsart</th>
+<th   align="center">Status</th>
+<th  align="center">Dokument</th>
 </tr>
 
 
@@ -56,13 +60,15 @@
 <tr><td><c:out value="${list.id}"/></td> 
 <td><c:out value="${list.contract_type}"/></td>
 <td><c:out value="${list.status}"/></td> 
-<td><form method = post name ="contracts" action = "${list.document}">
+<td align="center" ><form method = post name ="contracts" action = "${list.document}">
 <input type="submit" name="pdf" value="" align="center" style="background: url('images/pdf_small.jpg');width:25px;height:25px;border:0"/>
 </form></td></tr>
 </c:forEach>
 </tbody>
 	
-<tr>
+
+	
+<tr> 
 <td colspan="100%"><form action="../UploadServlet" method="post" enctype="multipart/form-data">
     <select size="1" name="description" />
       <option>Unfallversicherung</option>
@@ -70,9 +76,9 @@
       <option>Krankenversicherung</option>
       <option>Pensionsversicherung</option>
       <option>Freizeitversicherung</option>
-    </select>
-    <input type="file" name="file" />
-    <input type="submit" />
+    </select><br/><br/>
+    <input type="file" name="file" /> <br/><br/>
+    <input type="submit" /><br/>
 </form>
 </td>
 </tr>
@@ -84,7 +90,7 @@
 	
 	
 			
-			<div class="entry">
+			
 				<p> Dies ist ihr persönlicher Bereich ihres Online Ordners!</p>
 				<h2>Kategorien</h2>
 				<p>Diese Seite kann individuell gestaltet werden!!!!!!!</p>

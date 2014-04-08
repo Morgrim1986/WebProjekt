@@ -58,13 +58,13 @@ $("#sidebar1").load("leftbar.html");
 		 	
 <%if (session.getAttribute("list") != null){ %>
  
- <table border="1" bordercolor="RED" width="430" height="20" cellspacing="1" cellpadding="1">
+ <table class="TFtable" border="1" bordercolor="RED" width="430" height="30" cellspacing="1" cellpadding="1">
   <tbody>
  <c:forEach items="${sessionScope.list}" var="list"><tr>
 <td>Aktuelles Angebot</td>
 <td><c:out value="${list.contract_type}"/></td>
 <td><c:out value="${list.status}"/></td> 
-<td><form method = post name ="contracts" action = "${list.document}">
+<td ><form method = post name ="contracts" action = "${list.document}">
 <input type="submit" name="pdf" value="" align="center" style="background: url('images/pdf_small.jpg');width:25px;height:25px;border:0"/>
 </form></td>
 
